@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import Blank from "./Blank";
+import Parallax from "./Parallax";
+import Lenis from "lenis";
 
 function App() {
+  // LENIS SMOOTH SCROLL
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App h-fit w-full flex justify-center flex-col items-center">
+      <Blank prop={"SCROLL DOWN"} />
+      <Parallax />
+      <Blank prop={"SCROLL UP"} />
     </div>
   );
 }
